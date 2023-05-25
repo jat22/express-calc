@@ -1,10 +1,23 @@
 
 function createNumAry(numStr){
+	if(!numStr){
+		return new Error(
+			"No input provided"
+		)
+	}
 	const strAry = numStr.split(',');
-	const numsAry = strAry.map((num)=> {
-		return Number(num)
-	});
-	return numsAry
+	const numsAry = []
+	for(let num of strAry){
+		n = Number(num)
+		if(!n){
+			return new Error(
+				`${num} is not a number`
+			) 
+		}
+		numsAry.push(n)
+	}
+	console.log(numsAry)
+	return numsAry.sort(function(a,b){return a-b})
 }
 
 function findMean(numAry){
@@ -37,7 +50,7 @@ function findMode(numAry){
 	for(let num in counts){
 		if(counts[num] > maxFreq){
 			maxFreq = counts[num]
-			mode = num
+			mode = Number(num)
 		}
 		if(maxFreq === 1){
 			mode = "No Mode"
